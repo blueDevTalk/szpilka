@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  jami-opensuse:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile_opensuse_tumbleweed
+      args:
+        DISTRO: opensuse
+        DISTRO_VERSION: tumbleweed
+    volumes:
+      - .:/workspace
+      - /var/cache/jami:/var/cache/jami
+    working_dir: /workspace
+    command: make opensuse-tumbleweed
+    environment:
+      - RELEASE_VERSION=${RELEASE_VERSION:-1.0.0}
+      - RELEASE_TARBALL_FILENAME=jami_${RELEASE_VERSION}.tar.gz
+    tmpfs:
+      - /tmp
+    security_opt:
+      - seccomp:unconfined
+    privileged: true
+    tty: true
+    stdin_open: true

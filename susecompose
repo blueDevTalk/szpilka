@@ -1,0 +1,62 @@
+
+## Docker Compose 
+
+### Packages
+
+1. Docker:
+```bash
+sudo zypper install docker
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo usermod -aG docker $USER
+```
+
+2. Install Docker Compose:
+```bash
+sudo zypper install docker-compose
+```
+
+
+  # nie wiem czy zypper jest z defaultu na tym distro wiec jeśli go brak to :
+    ```
+    sudo apt-get zypper
+    ```
+  # albo użyj swojego managera
+
+
+
+## Relog terminala
+
+
+## Jami - Prerequisites
+
+- Docker
+- Git
+
+## Steps
+
+1. Clone the repository:
+```bash
+git clone https://git.jami.net/savoirfairelinux/jami-project.git
+cd jami-project
+```
+
+2. Build & start Docker Comp:
+```bash
+docker-compose up --build
+```
+
+
+## Problemshooting
+
+if errors on build: - 
+
+1. Clean Docker:
+```bash
+docker-compose down --rmi all --volumes
+```
+
+2. debugging session start:
+```bash
+docker-compose run --rm jami-opensuse bash
+```
